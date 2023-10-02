@@ -1,5 +1,5 @@
 import { Router } from "express";
-import {actualizarCliente, detalleCliente, listarClientes, registrarCliente} from "../controller/cliente_controller.js";
+import {actualizarCliente, detalleCliente, eliminarCliente, listarClientes, registrarCliente} from "../controller/cliente_controller.js";
 import verificarAutenticacion from "../middlewares/autenticacion.js";
 
 const router = Router();
@@ -9,6 +9,6 @@ router.post("/clientes/registro", verificarAutenticacion,registrarCliente);
 
 router.get("/clientes/:id",verificarAutenticacion, detalleCliente);
 router.put("/clientes/actualizar/:id", verificarAutenticacion,actualizarCliente);
-// router.delete("/clientes/eliminar/:id", verificarAutenticacion,eliminarPaciente);
+router.delete("/clientes/eliminar/:id", verificarAutenticacion,eliminarCliente);
 
 export default router;

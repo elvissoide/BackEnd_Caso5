@@ -30,6 +30,20 @@ const actualizarCliente = async(req,res)=>{
     }
 }
 
+const eliminarCliente = async (req,res)=>{
+    try{
+        const {id} = req.params
+        if (Object.values(req.body).includes("")) return res.status(400).json({msg:"Lo sentimos, debes llenar todos los campos"})
+        if( !mongoose.Types.ObjectId.isValid(id) ) return res.status(404).json({msg:`Lo sentimos, no existe el cliente ${id}`})
+        const {salida} = req.body
+        await Cliente.findByIdAndRemove(id);
+        res.status(200).json({msg:"Cliente eliminado exitosamente"})
+    }
+    catch(error){
+        console.log(error)
+    }
+}
+
 const registrarCliente = async (req, res) => {
     try {
         if (Object.values(req.body).includes("")) return res.status(400).json({ msg: "Lo sentimos, debes llenar todos los campos" })
@@ -49,5 +63,6 @@ export {
     registrarCliente,
     detalleCliente,
     actualizarCliente,
+    eliminarCliente,
     listarClientes
 }
