@@ -4,6 +4,7 @@ import cors from 'cors';
 import routerUsuarios from './router/usuario_routes.js'
 import routerClientes from './router/cliente_routes.js'
 import routerTecnicos from './router/tecnico_routes.js'
+import routerTickets from './router/ticket_routes.js'
 
 // Inicializaciones
 const app = express()
@@ -21,6 +22,7 @@ app.use(express.json())
 app.use('/api',routerUsuarios)
 app.use('/api',routerClientes)
 app.use('/api',routerTecnicos)
+app.use('/api',routerTickets)
 
 // Manejo de una ruta que no sea encontrada
 app.use((req,res)=>res.status(404).send("Endpoint no encontrado - 404"))
