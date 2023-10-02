@@ -1,14 +1,14 @@
 import Tecnico from "../models/Tecnico.js";
 import mongoose from "mongoose"
 
-// const listarClientes = async (req, res) => {
-//     try {
-//         const clientes = await Cliente.find({}, '-createdAt -updatedAt -__v');
-//         res.status(200).json(clientes);
-//     } catch (error) {
-//         res.status(500).json({ msg: "Ocurrió un error al listar las especialidades." });
-//     }
-// };
+const listarTecnicos = async (req, res) => {
+    try {
+        const tecnicos = await Tecnico.find({}, '-createdAt -updatedAt -__v');
+        res.status(200).json(tecnicos);
+    } catch (error) {
+        res.status(500).json({ msg: "Ocurrió un error al listar los tecnicos." });
+    }
+};
 
 // const detalleCliente = async(req,res)=>{
 //     const {id} = req.params
@@ -60,5 +60,6 @@ const registrarTecnico = async (req, res) => {
 }
 
 export {
-    registrarTecnico
+    registrarTecnico,
+    listarTecnicos
 }
