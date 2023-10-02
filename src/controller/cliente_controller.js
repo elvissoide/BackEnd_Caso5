@@ -1,4 +1,5 @@
 import Cliente from "../models/Cliente.js";
+import mongoose from "mongoose"
 
 const listarClientes = async (req, res) => {
     try {
@@ -8,6 +9,13 @@ const listarClientes = async (req, res) => {
         res.status(500).json({ msg: "Ocurrió un error al listar las especialidades." });
     }
 };
+
+const detalleCliente = async(req,res)=>{
+    const {id} = req.params
+    if( !mongoose.Types.ObjectId.isValid(id) ) return res.status(404).json({msg:`Lo sentimos, no existe el veterinario ${id}`});
+    const cliente = await Cliente.findById(id).select("-createdAt -updatedAt -__v")
+    res.status(200).json(cliente)
+}
 
 const registrarCliente = async (req, res) => {
     try {
@@ -26,5 +34,6 @@ const registrarCliente = async (req, res) => {
 
 export {
     registrarCliente,
+    detalleCliente,
     listarClientes
 }
